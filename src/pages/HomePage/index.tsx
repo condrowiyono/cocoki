@@ -17,6 +17,20 @@ function HomePage() {
       path: '/letter-tracing',
       icon: '✏️',
     },
+    {
+      id: 3,
+      title: 'Belajar Angka 4',
+      description: 'Belajar menulis angka empat dengan menelusuri',
+      path: '/number-4',
+      icon: '4️⃣',
+    },
+    {
+      id: 4,
+      title: 'Belajar Angka 5',
+      description: 'Belajar menulis angka lima dengan menelusuri',
+      path: '/number-5',
+      icon: '5️⃣',
+    },
     // More games will be added here later
   ];
 
