@@ -3,7 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', cursive, sans-serif;
+  font-family: "Comic Sans MS", "Arial Rounded MT Bold", cursive, sans-serif;
 }
 
 .match-game h1 {
@@ -144,7 +144,7 @@
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
-  font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', cursive, sans-serif;
+  font-family: "Comic Sans MS", "Arial Rounded MT Bold", cursive, sans-serif;
 }
 
 .check-button:hover {
