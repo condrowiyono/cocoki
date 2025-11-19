@@ -28,6 +28,9 @@
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   min-height: 400px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .connection-svg {
@@ -113,6 +116,10 @@
   transition: all 0.2s;
   z-index: 3;
   position: relative;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .match-dot:hover {

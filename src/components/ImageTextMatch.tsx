@@ -79,6 +79,37 @@ const ImageTextMatch = () => {
     }
   }
 
+  const handleDotTouchStart = (e: React.TouchEvent, id: string, side: 'left' | 'right') => {
+    e.preventDefault()
+    const rect = (e.target as HTMLElement).getBoundingClientRect()
+    const svgRect = svgRef.current?.getBoundingClientRect()
+
+    if (!svgRect) return
+
+    const x = rect.left + rect.width / 2 - svgRect.left
+    const y = rect.top + rect.height / 2 - svgRect.top
+
+    if (side === 'left') {
+      // Check if this image already has a connection
+      const existingConnection = connections.find(c => c.imageId === id)
+      if (existingConnection) {
+        // Remove existing connection from this image
+        setConnections(connections.filter(c => c.imageId !== id))
+      }
+
+      // Starting a new connection from left side
+      setDragStart({ x, y, id })
+      setCurrentDrag({ x, y })
+    } else {
+      // Clicking on right side - complete or remove connection
+      const existingConnection = connections.find(c => c.textId === id)
+      if (existingConnection) {
+        // Remove existing connection
+        setConnections(connections.filter(c => c.textId !== id))
+      }
+    }
+  }
+
   const handleMouseMove = (e: React.MouseEvent) => {
     if (dragStart) {
       const svgRect = svgRef.current?.getBoundingClientRect()
@@ -91,11 +122,49 @@ const ImageTextMatch = () => {
     }
   }
 
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (dragStart && e.touches.length > 0) {
+      const svgRect = svgRef.current?.getBoundingClientRect()
+      if (!svgRect) return
+
+      const touch = e.touches[0]
+      const x = touch.clientX - svgRect.left
+      const y = touch.clientY - svgRect.top
+
+      setCurrentDrag({ x, y })
+    }
+  }
+
   const handleMouseUp = (e: React.MouseEvent) => {
     if (!dragStart) return
 
     // Check if we're over a right-side dot
     const target = document.elementFromPoint(e.clientX, e.clientY)
+    const dotElement = target?.closest('.match-dot.right')
+
+    if (dotElement) {
+      const textId = dotElement.getAttribute('data-id')
+      if (textId) {
+        // Remove any existing connection to this text
+        const filteredConnections = connections.filter(c => c.textId !== textId)
+
+        // Add new connection
+        setConnections([...filteredConnections, { imageId: dragStart.id, textId }])
+      }
+    }
+
+    setDragStart(null)
+    setCurrentDrag(null)
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!dragStart) return
+
+    // Get the touch position
+    const touch = e.changedTouches[0]
+
+    // Check if we're over a right-side dot
+    const target = document.elementFromPoint(touch.clientX, touch.clientY)
     const dotElement = target?.closest('.match-dot.right')
 
     if (dotElement) {
@@ -162,7 +231,13 @@ const ImageTextMatch = () => {
       <h1>Cocokkan Gambar!</h1>
       <p>Tarik dari titik di samping gambar ke kata yang sesuai</p>
 
-      <div className="match-container" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
+      <div
+        className="match-container"
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <svg ref={svgRef} className="connection-svg">
           {/* Draw established connections */}
           {connections.map((conn, idx) => (
@@ -198,6 +273,7 @@ const ImageTextMatch = () => {
                 className="match-dot left"
                 data-id={item.id}
                 onMouseDown={(e) => handleDotMouseDown(e, item.id, 'left')}
+                onTouchStart={(e) => handleDotTouchStart(e, item.id, 'left')}
               />
             </div>
           ))}
@@ -210,6 +286,7 @@ const ImageTextMatch = () => {
                 className="match-dot right"
                 data-id={item.id}
                 onMouseDown={(e) => handleDotMouseDown(e, item.id, 'right')}
+                onTouchStart={(e) => handleDotTouchStart(e, item.id, 'right')}
               />
               <div className="match-text">{item.text}</div>
             </div>
