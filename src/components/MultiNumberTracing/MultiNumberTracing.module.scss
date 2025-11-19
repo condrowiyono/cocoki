@@ -1,0 +1,207 @@
+.multiNumberTracing {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  padding: 2rem;
+  font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Comic Neue",
+    cursive, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.badge {
+  background: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  font-weight: bold;
+  border: 2px solid #0284c7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f0f9ff;
+    transform: translateY(-2px);
+  }
+}
+
+.mainContent {
+  background: white;
+  border-radius: 2rem;
+  padding: 3rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border: 3px solid #333;
+}
+
+.titleSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.illustration {
+  font-size: 6rem;
+  line-height: 1;
+}
+
+.equals {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.bigNumber {
+  font-size: 8rem;
+  font-weight: bold;
+  color: #dc2626;
+  line-height: 1;
+}
+
+.word {
+  background: white;
+  border: 3px solid #333;
+  border-radius: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.tracersGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.tracerCard {
+  position: relative;
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 1rem;
+  padding: 1rem;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: #94a3b8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.canvas {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  background: white;
+  border-radius: 0.5rem;
+  cursor: crosshair;
+  touch-action: none;
+  display: block;
+}
+
+.clearButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: #ef4444;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+    background: #dc2626;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+@media (max-width: 1024px) {
+  .tracersGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .titleSection {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .illustration {
+    font-size: 4rem;
+  }
+
+  .equals {
+    font-size: 2rem;
+  }
+
+  .bigNumber {
+    font-size: 5rem;
+  }
+
+  .word {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .multiNumberTracing {
+    padding: 1rem;
+  }
+
+  .mainContent {
+    padding: 1.5rem;
+  }
+
+  .tracersGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .titleSection {
+    gap: 0.75rem;
+  }
+
+  .illustration {
+    font-size: 3rem;
+  }
+
+  .equals {
+    font-size: 1.5rem;
+  }
+
+  .bigNumber {
+    font-size: 4rem;
+  }
+
+  .word {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}

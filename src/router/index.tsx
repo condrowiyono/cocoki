@@ -4,6 +4,8 @@ import ConnectPictureToText from "../pages/ConnectPictureToText";
 import LetterTracing from "../pages/LetterTracing";
 import Number4 from "../pages/Number4";
 import Number5 from "../pages/Number5";
+import Number4Practice from "../pages/Number4Practice";
+import Number5Practice from "../pages/Number5Practice";
 import GameLayout from "../layouts/GameLayout";
 
 export const router = createBrowserRouter([
@@ -31,5 +33,13 @@ export const router = createBrowserRouter([
   {
     path: "/number-5",
     element: <Number5 />,
+  },
+  {
+    path: "/number-4-practice",
+    element: <Number4Practice />,
+  },
+  {
+    path: "/number-5-practice",
+    element: <Number5Practice />,
   },
 ]);

@@ -31,6 +31,20 @@ function HomePage() {
       path: '/number-5',
       icon: '5️⃣',
     },
+    {
+      id: 5,
+      title: 'Latihan Angka 4',
+      description: 'Latihan menulis angka 4 sebanyak 6 kali',
+      path: '/number-4-practice',
+      icon: '📝',
+    },
+    {
+      id: 6,
+      title: 'Latihan Angka 5',
+      description: 'Latihan menulis angka 5 sebanyak 6 kali',
+      path: '/number-5-practice',
+      icon: '📝',
+    },
     // More games will be added here later
   ];
 
